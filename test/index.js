@@ -6,7 +6,8 @@ const http = require('http');
 const express = require('express');
 
 describe('http-performance', () => {
-  it('should get request performance', (done) => {
+  it('should get request performance', function (done) {
+    this.timeout(5000);
     httpPerf.once('stats', (stats) => {
       assert.equal(stats.type, 'request');
       assert(stats.dns.ip);
@@ -25,7 +26,8 @@ describe('http-performance', () => {
     http.get('http://www.baidu.com/');
   });
 
-  it('should get response performance', (done) => {
+  it('should get response performance', function (done) {
+    this.timeout(5000);
     httpPerf.on('stats', (stats) => {
       if (stats.type !== 'response') {
         return;
