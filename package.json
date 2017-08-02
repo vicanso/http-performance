@@ -1,0 +1,38 @@
+{
+  "name": "http-performance",
+  "version": "1.0.0",
+  "description": "Get the http perfomance",
+  "main": "index.js",
+  "scripts": {
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
+    "test": "node ./node_modules/.bin/eslint ./index.js && node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test/*.js --"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicanso/http-performance.git"
+  },
+  "keywords": [
+    "http",
+    "performance",
+    "perf"
+  ],
+  "author": "Tree Xie <vicansocanbico@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vicanso/http-performance/issues"
+  },
+  "homepage": "https://github.com/vicanso/http-performance#readme",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.1",
+    "express": "^4.15.3",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.4.2"
+  }
+}
