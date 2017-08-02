@@ -16,7 +16,6 @@ describe('http-performance', () => {
         assert.equal(stats.dns.host, 'www.baidu.com');
       }
       assert.equal(stats.url, '/');
-      assert.equal(stats.requesting, 0);
       assert.equal(stats.method, 'GET');
       assert.equal(stats.status, 200);
       assert(stats.bytes);
@@ -33,7 +32,6 @@ describe('http-performance', () => {
       }
       assert.equal(stats.method, 'GET');
       assert.equal(stats.status, 200);
-      assert.equal(stats.responsing, 0);
       server.close();
       done();
     });
