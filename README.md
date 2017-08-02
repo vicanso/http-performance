@@ -4,6 +4,11 @@ I use `httpstat` to test my rest api's performance and then I want to write a mo
 
 The moudle can get the request and response of `http`, including `dns`, `method`, `url` and so on.
 
+[![Build Status](https://travis-ci.org/vicanso/http-performance.svg?branch=master)](https://travis-ci.org/vicanso/http-performance)
+[![Coverage Status](https://img.shields.io/coveralls/vicanso/http-performance/master.svg?style=flat)](https://coveralls.io/r/vicanso/http-performance?branch=master)
+[![npm](http://img.shields.io/npm/v/http-performance.svg?style=flat-square)](https://www.npmjs.org/package/http-performance)
+[![Github Releases](https://img.shields.io/npm/dm/http-performance.svg?style=flat-square)](https://github.com/vicanso/http-performance)
+
 ## API
 
 ```js

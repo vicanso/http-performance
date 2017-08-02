@@ -9,9 +9,12 @@ describe('http-performance', () => {
   it('should get request performance', (done) => {
     httpPerf.once('stats', (stats) => {
       assert.equal(stats.type, 'request');
-      assert(stats.dns.ip)
+      assert(stats.dns.ip);
       assert.equal(stats.dns.addressType, '4');
-      assert.equal(stats.dns.host, 'www.baidu.com');
+      // node.js 4.x there is no host param
+      if (process.version.indexOf('v4') === -1) {
+        assert.equal(stats.dns.host, 'www.baidu.com');
+      }
       assert.equal(stats.url, '/');
       assert.equal(stats.requesting, 0);
       assert.equal(stats.method, 'GET');
