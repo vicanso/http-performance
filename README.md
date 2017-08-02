@@ -1,6 +1,8 @@
 # http-performance
 
-I use `httpstat` to test my rest api's performance
+I use `httpstat` to test my rest api's performance and then I want to write a module to get the performance of `http`.
+
+The moudle can get the request and response of `http`, including `dns`, `method`, `url` and so on.
 
 ## API
 
