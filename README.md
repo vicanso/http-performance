@@ -16,14 +16,15 @@ The moudle can get the request and response of `http`, including `dns`, `method`
 const httpPerf = require('http-performance');
 const http = require('http');
 httpPerf.on('stats', (stats) => {
-  //   { type: 'request',
-  // dns: { ip: '14.215.177.37', addressType: 4, host: 'www.baidu.com' },
-  // requesting: 1,
-  // method: 'GET',
-  // url: '/',
-  // status: 200,
-  // bytes: 15358,
-  // timing: { dns: 13, tcp: 10, processing: 31, transfer: 2 } }
+/*  { type: 'request',
+  dns: { ip: '14.215.177.38', addressType: 4, host: 'www.baidu.com' },
+  requesting: 0,
+  method: 'GET',
+  url: '/',
+  status: 200,
+  bytes: 15358,
+  timing: { socket: 9, dns: 2, tcp: 6, processing: 13, transfer: 5, all: 35 } }
+*/
   console.info(stats);
 });
 http.get('http://www.baidu.com/');
@@ -39,13 +40,14 @@ httpPerf.on('stats', (stats) => {
   if (stats.type !== 'response') {
     return;
   }
-// { type: 'response',
-//   method: 'GET',
-//   use: 1019,
-//   status: 200,
-//   url: '/',
-//   bytes: 60,
-//   responsing:
+/* { type: 'response',
+  method: 'GET',
+  timing: { all: 1013, socket: 0 },
+  status: 200,
+  url: '/',
+  bytes: 60,
+  responsing: 0 }
+*/
   console.info(stats);
 });
 const app = express();
@@ -59,6 +61,18 @@ app.use((req, res) => {
 const server = app.listen();
 const url = `http://127.0.0.1:${server.address().port}`;
 http.get(url);
+```
+
+### disable/enable
+
+- type The http type, 'request' or 'response'
+
+Diable or enable the http stats type, default is enabled.
+
+```js
+const httpPerf = require('http-performance');
+httpPerf.disable('request');
+httpPerf.enable('request');
 ```
 
 ## License

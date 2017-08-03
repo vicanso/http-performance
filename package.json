@@ -22,10 +22,12 @@
     "url": "https://github.com/vicanso/http-performance/issues"
   },
   "homepage": "https://github.com/vicanso/http-performance#readme",
+  "readmeFilename": "README.md",
   "engines": {
     "node": ">=4.0.0"
   },
   "devDependencies": {
+    "agentkeepalive": "^3.3.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
