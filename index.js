@@ -40,7 +40,7 @@ function getBytes(res) {
 function requestStats() {
   const timePoints = {};
   const result = {
-    type: 'request',
+    category: 'request',
   };
   statsData.requesting += 1;
   let done = false;
@@ -78,13 +78,16 @@ function requestStats() {
       timing.transfer = timePoints.close - timePoints.data;
     }
     timing.all = timePoints.close - timePoints.start;
+    const status = (this.res && this.res.statusCode) || 0;
     Object.assign(result, {
       requesting: statsData.requesting,
       method: this.method,
       /* eslint no-underscore-dangle:0 */
       host: this._headers && this._headers.host,
       url: this.path,
-      status: (this.res && this.res.statusCode) || -1,
+      /* eslint no-bitwise:0 */
+      type: status / 100 | 0,
+      status,
       bytes: getBytes(this.res),
       timing,
     });
@@ -128,13 +131,16 @@ function responseStats() {
     const socketUse = Date.now() - startedAt;
     socket.once('close', () => {
       statsData.responsing -= 1;
+      const status = this.statusCode || 0;
       const result = {
-        type: 'response',
+        category: 'response',
         method: this.req.method,
         timing: {
           all: Date.now() - startedAt,
           socket: socketUse,
         },
+        /* eslint no-bitwise:0 */
+        type: status / 100 | 0,
         status: this.statusCode,
         url: this.req && this.req.originalUrl,
         bytes: getBytes(this.req),

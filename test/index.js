@@ -11,13 +11,14 @@ describe('http-performance', () => {
   it('should get request performance', function (done) {
     this.timeout(10 * 1000);
     httpPerf.once('stats', (stats) => {
-      assert.equal(stats.type, 'request');
+      assert.equal(stats.category, 'request');
       assert(stats.dns.ip);
       assert.equal(stats.dns.addressType, '4');
       assert.equal(stats.url, '/');
       assert.equal(stats.host, 'www.baidu.com');
       assert.equal(stats.method, 'GET');
       assert.equal(stats.status, 200);
+      assert.equal(stats.type, 2);
       assert(stats.bytes);
       assert(stats.timing);
       done();
@@ -88,11 +89,12 @@ describe('http-performance', () => {
     const server = app.listen();
 
     httpPerf.on('stats', (stats) => {
-      if (stats.type !== 'response') {
+      if (stats.category !== 'response') {
         return;
       }
       assert.equal(stats.method, 'GET');
       assert.equal(stats.status, 200);
+      assert.equal(stats.type, 2);
       server.close();
       done();
     });
