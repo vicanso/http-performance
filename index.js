@@ -66,17 +66,23 @@ function requestStats() {
         timing.tls = timePoints.secureConnect - timePoints.connect;
       }
       // wait for server process
-      timing.processing = timePoints.data - (timePoints.secureConnect || timePoints.connect);
-    } else {
+      if (timePoints.data) {
+        timing.processing = timePoints.data - (timePoints.secureConnect || timePoints.connect);
+      }
+    } else if (timePoints.data) {
       // reuse the socket
       timing.processing = timePoints.data - timePoints.socket;
     }
     // transfer data timg
-    timing.transfer = timePoints.close - timePoints.data;
+    if (timePoints.data) {
+      timing.transfer = timePoints.close - timePoints.data;
+    }
     timing.all = timePoints.close - timePoints.start;
     Object.assign(result, {
       requesting: statsData.requesting,
       method: this.method,
+      /* eslint no-underscore-dangle:0 */
+      host: this._headers && this._headers.host,
       url: this.path,
       status: (this.res && this.res.statusCode) || -1,
       bytes: getBytes(this.res),
@@ -94,13 +100,12 @@ function requestStats() {
         timePoints[event] = Date.now();
       });
     });
-    socket.once('lookup', (err, ip, addressType, host) => {
+    socket.once('lookup', (err, ip, addressType) => {
       timePoints.lookup = Date.now();
       if (!err) {
         result.dns = {
           ip,
           addressType,
-          host,
         };
       }
     });

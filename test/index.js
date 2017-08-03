@@ -9,16 +9,13 @@ const Agent = require('agentkeepalive');
 
 describe('http-performance', () => {
   it('should get request performance', function (done) {
-    this.timeout(5000);
+    this.timeout(10 * 1000);
     httpPerf.once('stats', (stats) => {
       assert.equal(stats.type, 'request');
       assert(stats.dns.ip);
       assert.equal(stats.dns.addressType, '4');
-      // node.js 4.x there is no host param
-      if (process.version.indexOf('v4') === -1) {
-        assert.equal(stats.dns.host, 'www.baidu.com');
-      }
       assert.equal(stats.url, '/');
+      assert.equal(stats.host, 'www.baidu.com');
       assert.equal(stats.method, 'GET');
       assert.equal(stats.status, 200);
       assert(stats.bytes);

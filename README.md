@@ -17,9 +17,10 @@ const httpPerf = require('http-performance');
 const http = require('http');
 httpPerf.on('stats', (stats) => {
 /*  { type: 'request',
-  dns: { ip: '14.215.177.38', addressType: 4, host: 'www.baidu.com' },
+  dns: { ip: '14.215.177.38', addressType: 4 },
   requesting: 0,
   method: 'GET',
+  host: 'www.baidu.com',
   url: '/',
   status: 200,
   bytes: 15358,
