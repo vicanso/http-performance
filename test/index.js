@@ -6,6 +6,7 @@ const http = require('http');
 const express = require('express');
 const Agent = require('agentkeepalive');
 
+httpPerf.enable('response');
 
 describe('http-performance', () => {
   it('should get request performance', function (done) {
