@@ -12,7 +12,7 @@ const statsData = {
 };
 const disableStats = {
   request: false,
-  response: false,
+  response: true,
 };
 const emitter = new EventEmitter();
 
