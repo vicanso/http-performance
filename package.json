@@ -1,6 +1,6 @@
 {
   "name": "http-performance",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get the http perfomance",
   "main": "index.js",
   "scripts": {
