@@ -16,7 +16,7 @@ The moudle can get the request and response of `http`, including `dns`, `method`
 const httpPerf = require('http-performance');
 const http = require('http');
 httpPerf.on('stats', (stats) => {
-/*  { type: 'request',
+/*  { category: 'request',
   dns: { ip: '14.215.177.38', addressType: 4 },
   requesting: 0,
   method: 'GET',
@@ -41,7 +41,7 @@ httpPerf.on('stats', (stats) => {
   if (stats.type !== 'response') {
     return;
   }
-/* { type: 'response',
+/* { category: 'response',
   method: 'GET',
   timing: { all: 1013, socket: 0 },
   status: 200,
